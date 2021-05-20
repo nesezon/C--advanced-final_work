@@ -3,7 +3,6 @@ C# Advanced. Final project
 
 TODO:  
 - [x] При каждом запуске пересоздавать БД (Code First)  
-https://entityframework.net/knowledge-base/31409860/automatically-create-database-in-entity-framework-6-with-automatic-migrations-disabled
 - [x] Вход по паролю
 - [ ] Два рабочих места
 - [ ] Клиентское место. Слева список товаров, справа корзина, снизу история своих заказов.
