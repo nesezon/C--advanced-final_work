@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace e_commerce.Views {
-  /// <summary>
-  /// Логика взаимодействия для ClientView.xaml
-  /// </summary>
   public partial class ClientView : UserControl {
+    private static MainWindow MW;
     public ClientView() {
       InitializeComponent();
+      MW = Application.Current.MainWindow as MainWindow;
+      DataContext = MW;
+    }
+
+    private void LogOut_Click(object sender, RoutedEventArgs e) {
+      MW.ActiveItem.Content = new LoginView();
     }
   }
 }

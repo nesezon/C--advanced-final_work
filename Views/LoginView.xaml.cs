@@ -27,12 +27,14 @@ namespace e_commerce.Views {
     private void Enter_Click(object sender, RoutedEventArgs e) {
       try {
         Message.Text = "... Обработка ...";
+        MW.LoggedUser = null;
         using (var db = new StoreDB()) {
           var query = from u in db.Users
                       where u.login == Login.Text && u.password == Password.Password && u.deleted == false
                       select u;
           var foundUser = query.SingleOrDefault();
           if (foundUser != null) {
+            MW.LoggedUser = foundUser;
             if (foundUser.role_id == (short)(role.customer)) {
               MW.ActiveItem.Content = new ClientView();
             } else if (foundUser.role_id == (short)(role.manager)) {
@@ -45,8 +47,13 @@ namespace e_commerce.Views {
           }
         }
       } catch (Exception ex) {
-        Message.Text = ex.Message;
+        Exception subEx = ex.InnerException;
+        Message.Text = (subEx==null) ? ex.Message : subEx.Message;
       }
+    }
+
+    private void UserControl_Loaded(object sender, RoutedEventArgs e) {
+      Login.Focus();
     }
   }
 }

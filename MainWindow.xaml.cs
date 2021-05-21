@@ -21,5 +21,20 @@ namespace e_commerce {
 
       ActiveItem.Content = new LoginView();
     }
+
+    #region Свойство зависимости "LoggedUser"
+    // Регистрация
+    public static readonly DependencyProperty LoggedUserProperty =
+      DependencyProperty.Register("LoggedUser", typeof(User), typeof(MainWindow));
+    // Упаковка
+    public User LoggedUser {
+      get {
+        return (User)GetValue(LoggedUserProperty);
+      }
+      set {
+        SetValue(LoggedUserProperty, value);
+      }
+    }
+    #endregion
   }
 }
