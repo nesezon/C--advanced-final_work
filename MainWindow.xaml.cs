@@ -5,9 +5,14 @@ using e_commerce.Views;
 
 namespace e_commerce {
   public partial class MainWindow : Window {
-
-    public User authUser = new User();
     public MainWindow() {
+
+      // первый запрос к БД долгий, поэтому
+      // делаю его заранее в фоне
+      // (простой, ничего не значащий запрос)
+      using (var db = new StoreDB()) {
+        var users = db.Roles.ToListAsync();
+      }
 
       InitializeComponent();
 
