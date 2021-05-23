@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Windows;
 
 namespace e_commerce.DBModel {
-  public class Product {
+  public class Product : INotifyPropertyChanged {
     public Product() {
       Order_items = new HashSet<Order_item>();
     }
@@ -21,5 +23,21 @@ namespace e_commerce.DBModel {
     public bool deleted { get; set; } = false;
 
     public virtual ICollection<Order_item> Order_items { get; set; }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    // команда отправки продукта в корзину
+    private RelayCommand toCartCommand;
+    public RelayCommand ToCartCommand {
+      get {
+        return toCartCommand ??
+               (toCartCommand = new RelayCommand(obj => {
+                 MainWindow MW = Application.Current.MainWindow as MainWindow;
+                 MW.Add2Cart(new CartItem() {
+                   product_id = product_id, product_name = name, quantity = 1
+                 });
+               }));
+      }
+    }
   }
 }

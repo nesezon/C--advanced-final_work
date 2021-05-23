@@ -34,7 +34,7 @@
                                FontWeight="Bold" TextAlignment="Left" Text="{Binding name}" />
                     <Button Content="В корзину" HorizontalAlignment="Right"
                             VerticalAlignment="Top" Margin="0,0,6,3"
-                            Style="{DynamicResource NulBtn}"
+                            Style="{DynamicResource NulBtn}" Command="{Binding ToCartCommand}"
                             Foreground="#ff198cc4" DockPanel.Dock="Bottom"/>
                     <TextBlock VerticalAlignment="Center" TextAlignment="Center" Text="{Binding price, StringFormat=\{0:N\}}" />
                   </DockPanel>
