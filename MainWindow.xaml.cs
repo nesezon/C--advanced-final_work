@@ -1,19 +1,25 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Windows;
 using e_commerce.DBModel;
 using e_commerce.Views;
 
 namespace e_commerce {
   public partial class MainWindow : Window {
+    public ObservableCollection<CartItem> Cart { get; set; }
+    public string selectedName { get; set; }
+    public User LoggedUser { get; set; }
+
     public MainWindow() {
 
       // первый запрос к БД долгий, поэтому
       // делаю его заранее в фоне
       // (простой, ничего не значащий запрос)
       using (var db = new StoreDB()) {
-        var users = db.Roles.ToListAsync();
+        var roles = db.Roles.ToListAsync();
       }
 
+      Cart = new ObservableCollection<CartItem>();
       InitializeComponent();
 
       // пересоздание БД при каждом запуске
@@ -22,19 +28,23 @@ namespace e_commerce {
       ActiveItem.Content = new LoginView();
     }
 
-    #region Свойство зависимости "LoggedUser"
-    // Регистрация
-    public static readonly DependencyProperty LoggedUserProperty =
-      DependencyProperty.Register("LoggedUser", typeof(User), typeof(MainWindow));
-    // Упаковка
-    public User LoggedUser {
-      get {
-        return (User)GetValue(LoggedUserProperty);
-      }
-      set {
-        SetValue(LoggedUserProperty, value);
+    /// <summary>
+    /// удаляю из корзины элемент с заданным id продукта
+    /// </summary>
+    public void RemoveFromCart(int product_id) {
+      for (int i = Cart.Count - 1; i >= 0; i--) {
+        if (Cart[i].product_id == product_id) Cart.RemoveAt(i);
       }
     }
-    #endregion
+
+    /// <summary>
+    /// добавляю продукт в корзину если его там еще нет
+    /// </summary>
+    public void Add2Cart(CartItem product) {
+      for (int i = 0; i < Cart.Count; i++) {
+        if (Cart[i].product_id == product.product_id) return;
+      }
+      Cart.Add(product);
+    }
   }
 }

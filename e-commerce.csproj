@@ -78,6 +78,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Cart.cs" />
     <Compile Include="DBModel\Order.cs" />
     <Compile Include="DBModel\Order_item.cs" />
     <Compile Include="DBModel\Product.cs" />

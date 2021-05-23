@@ -8,13 +8,13 @@
   <Grid>
     <Grid>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="200" />
+        <ColumnDefinition Width="10000*" MinWidth="150" />
+        <ColumnDefinition Width="3" />
+        <ColumnDefinition Width="*" MinWidth="200" />
       </Grid.ColumnDefinitions>
 
-      <DockPanel Grid.Column="0"  LastChildFill="True">
-        <DockPanel LastChildFill="True" Dock="Top">
+      <DockPanel Grid.Column="0">
+        <DockPanel Dock="Top">
           <!-- Logo -->
           <Image Source="{StaticResource Logo}" Height="16" Margin="0, 0, 0, 5" />
           <TextBlock FontSize="16" FontWeight="Bold" Foreground="#ff900020"
@@ -24,18 +24,51 @@
         <ListBox Margin="0, 0, 2, 0" Background="Aqua"/>
       </DockPanel>
 
-      <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
-                    HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+      <GridSplitter Grid.Column="1" ShowsPreview="False"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-      <Grid Grid.Column="2" Margin="2, 0, 0, 0">
+      <Grid Grid.Column="2" Margin="2, 40, 0, 0">
         <Grid.RowDefinitions>
-          <RowDefinition Height="*" />
-          <RowDefinition Height="200" />
+          <RowDefinition Height="10000*" MinHeight="120" />
+          <RowDefinition Height="3" />
+          <RowDefinition Height="*" MinHeight="140"/>
         </Grid.RowDefinitions>
+
         <!-- Корзина -->
-        <ListBox Grid.Row="0" Margin="0, 40, 0, 5" Background="DeepPink" />
+        <ScrollViewer Grid.Row="0" Margin="0, 0, 0, 2">
+          <ItemsControl x:Name="CartContainer" ItemsSource="{Binding  Cart }">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Grid Margin="0,0,0,5">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="15" />
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Grid.Column="0" Text="{Binding product_name}" />
+                  <TextBlock Grid.Column="1" Text="{Binding quantity}" />
+                  <Button Grid.Column="2" Width="15" Command="{Binding AddCommand}"
+                          FontSize="16" Margin="0, -4, 0, 0" HorizontalAlignment="Center"
+                          Style="{DynamicResource NulBtn}">+</Button>
+                  <Button Grid.Column="3" Width="15" Command="{Binding SubCommand}"
+                          FontSize="16" Margin="0, -4, 0, 0" HorizontalAlignment="Center"
+                          Style="{DynamicResource NulBtn}">-</Button>
+                  <Button Grid.Column="4" Width="15" Command="{Binding DelCommand}"
+                          FontSize="16" Margin="0, -4, 0, 0" HorizontalAlignment="Center"
+                          Style="{DynamicResource NulBtn}" Foreground="Red">x</Button>
+                </Grid>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+          </ItemsControl>
+        </ScrollViewer>
+
+        <GridSplitter Grid.Row="1" ShowsPreview="False"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
         <!-- История заказов -->
-        <TextBlock Grid.Row="1" Background="BlueViolet" />
+        <TextBlock Grid.Row="2" Background="BlueViolet" Margin="0,2,0,0"/>
       </Grid>
     </Grid>
 

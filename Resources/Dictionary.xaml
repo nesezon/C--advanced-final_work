@@ -7,7 +7,7 @@
           <Setter.Value>
             <ControlTemplate TargetType="Button">
               <Grid Background="{TemplateBinding Background}">
-                <ContentPresenter />
+                <ContentPresenter HorizontalAlignment="Center"/>
               </Grid>
             </ControlTemplate>
           </Setter.Value>
