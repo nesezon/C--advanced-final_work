@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows;
-using System.Windows.Input;
 
 namespace e_commerce {
   public class CartItem : INotifyPropertyChanged {
@@ -52,29 +45,6 @@ namespace e_commerce {
                  MW.RemoveFromCart(product_id);
                }));
       }
-    }
-  }
-
-  public class RelayCommand : ICommand {
-    private Action<object> execute;
-    private Func<object, bool> canExecute;
-
-    public event EventHandler CanExecuteChanged {
-      add { CommandManager.RequerySuggested += value; }
-      remove { CommandManager.RequerySuggested -= value; }
-    }
-
-    public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null) {
-      this.execute = execute;
-      this.canExecute = canExecute;
-    }
-
-    public bool CanExecute(object parameter) {
-      return this.canExecute == null || this.canExecute(parameter);
-    }
-
-    public void Execute(object parameter) {
-      this.execute(parameter);
     }
   }
 }

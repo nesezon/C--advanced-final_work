@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using e_commerce.DBModel;
 
 namespace e_commerce.Views {
   public partial class LoginView : UserControl {
@@ -13,8 +12,10 @@ namespace e_commerce.Views {
 
     public LoginView() {
       InitializeComponent();
-      this.PreviewKeyDown += new KeyEventHandler(HandleKeypressing);
       MW = Application.Current.MainWindow as MainWindow;
+      
+      // добавляю обработчик нажатия клавиш
+      PreviewKeyDown += HandleKeypressing;
     }
 
     /// <summary>
@@ -28,27 +29,25 @@ namespace e_commerce.Views {
       try {
         Message.Text = "... Обработка ...";
         MW.LoggedUser = null;
-        using (var db = new StoreDB()) {
-          var query = from u in db.Users
-                      where u.login == Login.Text && u.password == Password.Password && u.deleted == false
-                      select u;
-          var foundUser = query.SingleOrDefault();
-          if (foundUser != null) {
-            MW.LoggedUser = foundUser;
-            if (foundUser.role_id == (short)(role.customer)) {
-              MW.ActiveItem.Content = new ClientView();
-            } else if (foundUser.role_id == (short)(role.manager)) {
-              MW.ActiveItem.Content = new AdminView();
-            } else {
-              Message.Text = "Нет такого пользователя";
-            }
+        var query = from u in MW.db.Users
+                    where u.login == Login.Text && u.password == Password.Password && u.deleted == false
+                    select u;
+        var foundUser = query.SingleOrDefault();
+        if (foundUser != null) {
+          MW.LoggedUser = foundUser;
+          if (foundUser.role_id == (short)(role.customer)) {
+            MW.ActiveItem.Content = new ClientView();
+          } else if (foundUser.role_id == (short)(role.manager)) {
+            MW.ActiveItem.Content = new AdminView();
           } else {
             Message.Text = "Нет такого пользователя";
           }
+        } else {
+          Message.Text = "Нет такого пользователя";
         }
       } catch (Exception ex) {
         Exception subEx = ex.InnerException;
-        Message.Text = (subEx==null) ? ex.Message : subEx.Message;
+        Message.Text = (subEx == null) ? ex.Message : subEx.Message;
       }
     }
 

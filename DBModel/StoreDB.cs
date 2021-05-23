@@ -4,7 +4,10 @@ using System.Data.Entity;
 
 namespace e_commerce.DBModel {
   public class StoreDB : DbContext {
-    public StoreDB() : base("name=Model2") { }
+    public StoreDB() : base("name=Model2") {
+      // пересоздание БД при каждом запуске
+      Database.SetInitializer(new StoreDB.StoreDbInitializer());
+    }
 
     public virtual DbSet<Order_item> Order_items { get; set; }
     public virtual DbSet<Order> Orders { get; set; }

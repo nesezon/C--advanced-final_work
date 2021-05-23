@@ -9,34 +9,61 @@
     <Grid>
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="10000*" MinWidth="150" />
-        <ColumnDefinition Width="3" />
+        <ColumnDefinition Width="4" />
         <ColumnDefinition Width="*" MinWidth="200" />
       </Grid.ColumnDefinitions>
 
       <DockPanel Grid.Column="0">
+
+        <!-- Заголовок -->
         <DockPanel Dock="Top">
-          <!-- Logo -->
           <Image Source="{StaticResource Logo}" Height="16" Margin="0, 0, 0, 5" />
           <TextBlock FontSize="16" FontWeight="Bold" Foreground="#ff900020"
                      Margin="5, 0, 0, 5" VerticalAlignment="Center" Text="Магазин" />
         </DockPanel>
+
         <!-- Список товаров -->
-        <ListBox Margin="0, 0, 2, 0" Background="Aqua"/>
+        <ScrollViewer>
+          <ItemsControl ItemsSource="{Binding  Products }">
+            <ItemsControl.ItemTemplate>
+              <DataTemplate>
+                <Border BorderBrush="#FFB5B5B7" Background="White" Margin="2"
+                        Height="80" Width="180" BorderThickness="1" CornerRadius="8">
+                  <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" FontSize="16" TextWrapping="Wrap" Margin="5,0,0,0"
+                               FontWeight="Bold" TextAlignment="Left" Text="{Binding name}" />
+                    <Button Content="В корзину" HorizontalAlignment="Right"
+                            VerticalAlignment="Top" Margin="0,0,6,3"
+                            Style="{DynamicResource NulBtn}"
+                            Foreground="#ff198cc4" DockPanel.Dock="Bottom"/>
+                    <TextBlock VerticalAlignment="Center" TextAlignment="Center" Text="{Binding price, StringFormat=\{0:N\}}" />
+                  </DockPanel>
+                </Border>
+              </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+              <ItemsPanelTemplate>
+                <WrapPanel />
+              </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+          </ItemsControl>
+        </ScrollViewer>
+
       </DockPanel>
 
       <GridSplitter Grid.Column="1" ShowsPreview="False"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
-      <Grid Grid.Column="2" Margin="2, 40, 0, 0">
+      <Grid Grid.Column="2" Margin="0, 40, 0, 0">
         <Grid.RowDefinitions>
           <RowDefinition Height="10000*" MinHeight="120" />
-          <RowDefinition Height="3" />
+          <RowDefinition Height="4" />
           <RowDefinition Height="*" MinHeight="140"/>
         </Grid.RowDefinitions>
 
         <!-- Корзина -->
-        <ScrollViewer Grid.Row="0" Margin="0, 0, 0, 2">
-          <ItemsControl x:Name="CartContainer" ItemsSource="{Binding  Cart }">
+        <ScrollViewer Grid.Row="0">
+          <ItemsControl ItemsSource="{Binding  Cart }">
             <ItemsControl.ItemTemplate>
               <DataTemplate>
                 <Grid Margin="0,0,0,5">
@@ -68,7 +95,7 @@
                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
         <!-- История заказов -->
-        <TextBlock Grid.Row="2" Background="BlueViolet" Margin="0,2,0,0"/>
+        <TextBlock Grid.Row="2" Background="BlueViolet"/>
       </Grid>
     </Grid>
 
