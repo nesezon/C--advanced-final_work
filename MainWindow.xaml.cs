@@ -28,6 +28,7 @@ namespace e_commerce {
 
     public MainWindow() {
       db = new StoreDB();
+      Cart = new ObservableCollection<CartItem>();
 
       // первый запрос к БД долгий, поэтому
       // делаю его заранее в фоне
@@ -37,10 +38,8 @@ namespace e_commerce {
       } catch (Exception ex) {
         Exception subEx = ex.InnerException;
         MessageBox.Show($"Ошибка в БД: {(subEx == null ? ex.Message : subEx.Message)}");
-        return;
+        Close();
       }
-
-      Cart = new ObservableCollection<CartItem>();
 
       InitializeComponent();
 

@@ -54,8 +54,8 @@ namespace e_commerce.DBModel {
         };
         roles.ForEach(s => context.Roles.Add(s));
         users.ForEach(s => context.Users.Add(s));
-        orders.ForEach(s => context.Orders.Add(s));
         products.ForEach(s => context.Products.Add(s));
+        orders.ForEach(s => context.Orders.Add(s));
         order_items.ForEach(s => context.Order_items.Add(s));
         context.SaveChanges();
 

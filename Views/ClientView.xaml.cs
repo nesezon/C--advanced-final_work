@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using e_commerce.DBModel;
@@ -28,6 +30,44 @@ namespace e_commerce.Views {
       }
       MW.Cart.Clear();
       MW.ActiveItem.Content = new LoginView();
+    }
+
+    private void Buy_Click(object sender, RoutedEventArgs e) {
+      // сохраняю заказ в рамках одной транзакции
+      try {
+        using (var transaction = new TransactionScope()) {
+
+          var newOrder = new Order {
+            user_id = MW.LoggedUser.user_id,
+            order_time = DateTime.Now
+          };
+          MW.db.Orders.Add(newOrder);
+          MW.db.SaveChanges();
+
+          // получаю id добавленного заказа
+          int id = newOrder.order_id;
+
+          // сохраняю содержимое корзины для добавленного заказа
+          foreach (var cartItem in MW.Cart)
+            MW.db.Order_items.Add(new Order_item {
+              order_id = id,
+              product_id = cartItem.product_id,
+              quantity = cartItem.quantity
+            });
+          MW.db.SaveChanges();
+
+          transaction.Complete();
+        }
+        MessageBox.Show("Успешно");
+        // чищу корзину для новых покупок
+        MW.Cart.Clear();
+      } catch (Exception ex) {
+        Exception subEx = ex.InnerException;
+        MessageBox.Show($"Ошибка: {(subEx == null ? ex.Message : subEx.Message)}");
+      }
+
+      
+
     }
   }
 }

@@ -121,15 +121,15 @@
             Foreground="#ff198cc4" Click="LogOut_Click"/>
     
     <!-- Купить -->
-    <Grid Width="90" Height="23"
+    <Grid Width="87" Height="23"
           HorizontalAlignment="Right" VerticalAlignment="Top"
-          Margin="0,25,110,0">
+          Margin="0,25,113,0">
       <Border BorderThickness="1" BorderBrush="#ff900020"
               Background="#ffF68E19" CornerRadius="8"/>
-      <Button Style="{DynamicResource NulBtn}"/>
+      <Button Style="{DynamicResource NulBtn}" Click="Buy_Click"/>
       <TextBlock Text="Купить" Foreground="White" IsHitTestVisible="False"
                  HorizontalAlignment="Right" VerticalAlignment="Stretch"
-                 FontSize="15" FontWeight="DemiBold" Margin="0,1,13,0"/>
+                 FontSize="13" FontWeight="DemiBold" Margin="0,2,13,0"/>
       <Image Source="{StaticResource Cart}" IsHitTestVisible="False"
              Height="16" Margin="8, 3, 0, 4"
              HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
