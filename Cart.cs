@@ -6,6 +6,7 @@ namespace e_commerce {
     public int product_id { get; set; }
     public string product_name { get; set; }
     public int quantity { get; set; }
+    public decimal price { get; set; }
 
     public event PropertyChangedEventHandler PropertyChanged;
 
@@ -17,6 +18,8 @@ namespace e_commerce {
                (addCommand = new RelayCommand(obj => {
                  quantity++;
                  PropertyChanged(this, new PropertyChangedEventArgs("quantity"));
+                 MainWindow MW = Application.Current.MainWindow as MainWindow;
+                 MW.CalcSum();
                }));
       }
     }
@@ -30,6 +33,8 @@ namespace e_commerce {
                  if (quantity > 1) {
                    quantity--;
                    PropertyChanged(this, new PropertyChangedEventArgs("quantity"));
+                   MainWindow MW = Application.Current.MainWindow as MainWindow;
+                   MW.CalcSum();
                  }
                }));
       }
@@ -43,6 +48,7 @@ namespace e_commerce {
                (delCommand = new RelayCommand(obj => {
                  MainWindow MW = Application.Current.MainWindow as MainWindow;
                  MW.RemoveFromCart(product_id);
+                 MW.CalcSum();
                }));
       }
     }

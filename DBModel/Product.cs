@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows;
 
 namespace e_commerce.DBModel {
-  public class Product : INotifyPropertyChanged {
+  public class Product {
     public Product() {
       Order_items = new HashSet<Order_item>();
     }
@@ -24,8 +24,6 @@ namespace e_commerce.DBModel {
 
     public virtual ICollection<Order_item> Order_items { get; set; }
 
-    public event PropertyChangedEventHandler PropertyChanged;
-
     // команда отправки продукта в корзину
     private RelayCommand toCartCommand;
     public RelayCommand ToCartCommand {
@@ -34,7 +32,7 @@ namespace e_commerce.DBModel {
                (toCartCommand = new RelayCommand(obj => {
                  MainWindow MW = Application.Current.MainWindow as MainWindow;
                  MW.Add2Cart(new CartItem() {
-                   product_id = product_id, product_name = name, quantity = 1
+                   product_id = product_id, product_name = name, quantity = 1, price = price
                  });
                }));
       }

@@ -11,6 +11,20 @@ namespace e_commerce {
     public ObservableCollection<CartItem> Cart { get; set; }
     public ObservableCollection<Product> Products { get; set; }
     public User LoggedUser { get; set; }
+    #region свойство зависимости "TotalSum" для хранения общей стоимости заказа
+      // Регистрация
+      public static readonly DependencyProperty TotalSumProperty =
+          DependencyProperty.Register("TotalSum", typeof(decimal), typeof(MainWindow));
+      // Упаковка
+      public decimal TotalSum {
+        get {
+          return (decimal)GetValue(TotalSumProperty);
+        }
+        set {
+          SetValue(TotalSumProperty, value);
+        }
+      }
+    #endregion
 
     public MainWindow() {
       db = new StoreDB();
@@ -30,7 +44,7 @@ namespace e_commerce {
 
       InitializeComponent();
 
-      // Сразу открываем окно авторизации
+      // Сразу открываю окно авторизации
       ActiveItem.Content = new LoginView();
     }
 
@@ -51,6 +65,17 @@ namespace e_commerce {
         if (Cart[i].product_id == product.product_id) return;
       }
       Cart.Add(product);
+      CalcSum();
+    }
+
+    /// <summary>
+    /// подсчет общей стоимости содержимого корзины
+    /// </summary>
+    public void CalcSum() {
+      decimal sum = 0;
+      foreach (var item in Cart)
+        sum += item.quantity * item.price;
+      TotalSum = sum;
     }
   }
 }

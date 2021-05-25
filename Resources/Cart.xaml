@@ -1,0 +1,26 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+
+<DrawingImage x:Key="Cart">
+  <DrawingImage.Drawing>
+    <DrawingGroup>
+      <DrawingGroup.Children>
+        <DrawingGroup>
+          <DrawingGroup.Children>
+            <GeometryDrawing Brush="White" Pen="{x:Null}">
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M1,0.992188L1,1.992188 3,1.992188C3.214844,1.992188,3.398438,2.132813,3.46875,2.335938L4.402344,10.667969C4.488281,11.421875,5.136719,12,5.894531,12L12,12 12,11 5.894531,11C5.636719,11,5.425781,10.8125,5.398438,10.558594L5.335938,10 11.679688,10C12.390625,10,13.011719,9.492188,13.152344,8.796875L14.109375,4 4.660156,4 4.445313,2.09375 4.429688,2.046875C4.238281,1.421875,3.65625,0.996094,3,0.992188z M11,12C10.449219,12 10,12.449219 10,13 10,13.550781 10.449219,14 11,14 11.550781,14 12,13.550781 12,13 12,12.449219 11.550781,12 11,12z M6,12C5.449219,12 5,12.449219 5,13 5,13.550781 5.449219,14 6,14 6.550781,14 7,13.550781 7,13 7,12.449219 6.550781,12 6,12z M4.773438,5L12.890625,5 12.171875,8.597656C12.121094,8.835938,11.921875,9,11.679688,9L5.222656,9z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+          </DrawingGroup.Children>
+          <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0,0,16,16" />
+          </DrawingGroup.ClipGeometry>
+        </DrawingGroup>
+      </DrawingGroup.Children>
+    </DrawingGroup>
+  </DrawingImage.Drawing>
+</DrawingImage>
+
+</ResourceDictionary>

@@ -14,8 +14,8 @@ namespace e_commerce.Views {
       MW.Products = new ObservableCollection<Product>(MW.db.Products);
 
       // Пример заполнения корзины
-      MW.Cart.Add(new CartItem() { product_id = 2, product_name = "Тетрадь", quantity = 11 });
-      MW.Cart.Add(new CartItem() { product_id = 3, product_name = "Циркуль", quantity = 1 });
+      // MW.Add2Cart(new CartItem() { product_id = 2, product_name = "Тетрадь", quantity = 11, price = 2});
+      // MW.Add2Cart(new CartItem() { product_id = 3, product_name = "Циркуль", quantity = 1, price = 7});
     }
 
     private void LogOut_Click(object sender, RoutedEventArgs e) {
