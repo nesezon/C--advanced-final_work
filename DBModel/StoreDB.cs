@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 
+// Ремарка на будущее:
+// Необходимо дублировать название продукта и цену в order_items
+// чтобы в старых чеках фигурировали старые данные а не последние
+
 namespace e_commerce.DBModel {
   public class StoreDB : DbContext {
     public StoreDB() : base("name=Model2") {
@@ -38,7 +42,7 @@ namespace e_commerce.DBModel {
         var orders = new List<Order> {
           new Order { order_id = 1, user_id = 1, order_time = new DateTime(2021, 1, 15, 12, 11, 10) },
           new Order { order_id = 2, user_id = 2, order_time = new DateTime(2021, 1, 30, 9, 20, 0) },
-          new Order { order_id = 3, user_id = 3, order_time = new DateTime(2021, 2, 11, 1, 40, 1) }
+          new Order { order_id = 3, user_id = 3, order_time = new DateTime(2021, 2, 11, 18, 40, 1) }
         };
         var products = new List<Product> {
           new Product { product_id = 1, name = "Ручка", price = 1.4M, deleted = false },

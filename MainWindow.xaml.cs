@@ -11,12 +11,26 @@ namespace e_commerce {
     public ObservableCollection<CartItem> Cart { get; set; }
     public ObservableCollection<Product> Products { get; set; }
     public User LoggedUser { get; set; }
+    #region свойство зависимости "Orders" для хранения коллекции заказов
+    // Регистрация
+    public static readonly DependencyProperty OrdersProperty =
+          DependencyProperty.Register("Orders", typeof(ObservableCollection<OrdersFiltered>), typeof(MainWindow));
+    // Упаковка
+    public ObservableCollection<OrdersFiltered> Orders {
+      get {
+        return (ObservableCollection<OrdersFiltered>)GetValue(OrdersProperty);
+      }
+      set {
+        SetValue(OrdersProperty, value);
+      }
+    }
+    #endregion
     #region свойство зависимости "TotalSum" для хранения общей стоимости заказа
       // Регистрация
       public static readonly DependencyProperty TotalSumProperty =
           DependencyProperty.Register("TotalSum", typeof(decimal), typeof(MainWindow));
-      // Упаковка
-      public decimal TotalSum {
+    // Упаковка
+    public decimal TotalSum {
         get {
           return (decimal)GetValue(TotalSumProperty);
         }

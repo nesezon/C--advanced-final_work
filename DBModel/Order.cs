@@ -21,4 +21,9 @@ namespace e_commerce.DBModel {
 
     public virtual User Users { get; set; }
   }
+
+  public class OrdersFiltered {
+    public DateTime order_time { get; set; }
+    public decimal total { get; set; }
+  }
 }

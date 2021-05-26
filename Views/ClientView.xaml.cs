@@ -12,16 +12,37 @@ using System.Text;
 namespace e_commerce.Views {
   public partial class ClientView : UserControl {
     private static MainWindow MW;
-    public ClientView() {
-      InitializeComponent();
+
+    private void Preps() {
       MW = Application.Current.MainWindow as MainWindow;
-      DataContext = MW;
-
       MW.Products = new ObservableCollection<Product>(MW.db.Products);
+      // Подключаю order_items и products для вычисления общих стоимостей заказа
+      // Оставляю только заказы текущего пользователя
+      // Заказы в момент привязки сортирую по дате заказа (последние сверху)
+      var query1 = from oi in MW.db.Order_items
+                   join p in MW.db.Products
+                    on oi.product_id equals p.product_id
+                   select new { oi.order_id, oi.quantity, p.price };
+      var query2 = from oip in query1
+                   group oip by oip.order_id into g
+                   select new {
+                     order_id = g.Key,
+                     total = g.Sum(item => item.price * item.quantity)
+                   };
+      var result = from or in 
+                    from o in MW.db.Orders
+                    where o.user_id == MW.LoggedUser.user_id
+                    select o
+                   join oip in query2
+                     on or.order_id equals oip.order_id
+                   select new OrdersFiltered() { order_time = or.order_time, total = oip.total };
+      MW.Orders = new ObservableCollection<OrdersFiltered>(result.OrderByDescending(item => item.order_time));
+      DataContext = MW;
+    }
 
-      // Пример заполнения корзины
-      // MW.Add2Cart(new CartItem() { product_id = 2, product_name = "Тетрадь", quantity = 11, price = 2});
-      // MW.Add2Cart(new CartItem() { product_id = 3, product_name = "Циркуль", quantity = 1, price = 7});
+    public ClientView() {
+      Preps();
+      InitializeComponent();
     }
 
     private void LogOut_Click(object sender, RoutedEventArgs e) {
@@ -65,6 +86,9 @@ namespace e_commerce.Views {
           transaction.Complete();
         }
 
+        // обновление списка заказов из БД
+        Preps();
+
         // формирование чека продажи
         if (order_id >= 0) Invoice(order_id);
 
@@ -94,12 +118,12 @@ namespace e_commerce.Views {
                    select u).SingleOrDefault();
 
       var qProducts = from oi in
-        (from o in MW.db.Order_items
-         where o.order_id == order_id
-         select o)
-              join p in MW.db.Products
-          on oi.product_id equals p.product_id
-              select new { oi.quantity, p.name, p.price };
+                        from o in MW.db.Order_items
+                        where o.order_id == order_id
+                        select o
+                      join p in MW.db.Products
+                      on oi.product_id equals p.product_id
+                      select new { oi.quantity, p.name, p.price };
 
       StringBuilder message = new StringBuilder();
       message.Append($"ЧЕК ПРОДАЖИ № {qOrder?.order_id}\r\n");
