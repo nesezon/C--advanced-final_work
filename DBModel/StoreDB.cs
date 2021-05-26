@@ -41,9 +41,18 @@ namespace e_commerce.DBModel {
           new Order { order_id = 3, user_id = 3, order_time = new DateTime(2021, 2, 11, 1, 40, 1) }
         };
         var products = new List<Product> {
-          new Product { product_id = 1, name = "Ручка", price = 4.5M, deleted = false },
-          new Product { product_id = 2, name = "Тетрадь", price = 2M, deleted = false },
-          new Product { product_id = 3, name = "Циркуль", price = 7M, deleted = false }
+          new Product { product_id = 1, name = "Ручка", price = 1.4M, deleted = false },
+          new Product { product_id = 2, name = "Тетрадь", price = 1M, deleted = false },
+          new Product { product_id = 3, name = "Циркуль", price = 3.5M, deleted = false },
+          new Product { product_id = 4, name = "Транспортир", price = 2M, deleted = false },
+          new Product { product_id = 4, name = "Скрепки", price = 0.96M, deleted = false },
+          new Product { product_id = 4, name = "Пенал", price = 6.5M, deleted = false },
+          new Product { product_id = 4, name = "Маркер", price = 1.8M, deleted = false },
+          new Product { product_id = 4, name = "Ластик", price = 1.22M, deleted = false },
+          new Product { product_id = 4, name = "Карандаш", price = 3.4M, deleted = false },
+          new Product { product_id = 4, name = "Линейка", price = 3M, deleted = false },
+          new Product { product_id = 4, name = "Точилка", price = 0.8M, deleted = false },
+          new Product { product_id = 4, name = "Скотч", price = 3M, deleted = false },
         };
         var order_items = new List<Order_item> {
           new Order_item { order_id = 1, product_id = 2, quantity = 11 },
