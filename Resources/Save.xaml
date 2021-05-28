@@ -1,0 +1,39 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+
+<DrawingImage x:Key="Save">
+  <DrawingImage.Drawing>
+    <DrawingGroup>
+      <DrawingGroup.Children>
+        <DrawingGroup>
+          <DrawingGroup.Children>
+            <GeometryDrawing Pen="{x:Null}">
+              <GeometryDrawing.Brush>
+                  <SolidColorBrush Color="#FF515151" Opacity="0.3" />
+              </GeometryDrawing.Brush>
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M20,19C20,19.6,19.6,20,19,20L5,20C4.4,20,4,19.6,4,19L4,5C4,4.4,4.4,4,5,4L16.6,4 20,7.4 20,19z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+              <GeometryDrawing Brush="#FF515151" Pen="{x:Null}">
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M11.5,12A2.5,2.5,0,1,0,11.5,17A2.5,2.5,0,1,0,11.5,12z M7,7L15,7 15,10 7,10z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+              <GeometryDrawing Brush="#FF515151" Pen="{x:Null}">
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M19,21L5,21C3.9,21,3,20.1,3,19L3,5C3,3.9,3.9,3,5,3L17,3 21,7 21,19C21,20.1,20.1,21,19,21z M5,5L5,19 19,19 19,7.8 16.2,5 5,5z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+          </DrawingGroup.Children>
+          <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0,0,24,24" />
+          </DrawingGroup.ClipGeometry>
+        </DrawingGroup>
+      </DrawingGroup.Children>
+    </DrawingGroup>
+  </DrawingImage.Drawing>
+</DrawingImage>
+
+</ResourceDictionary>

@@ -134,7 +134,7 @@ namespace e_commerce.Views {
 
       decimal sum = 0;
       foreach (var prod in qProducts) {
-        message.Append($"{prod.name,-15}{prod.price.ToString("F"),-8}{prod.quantity}\r\n");
+        message.Append($"{prod.name,-15}{prod.price,-8:F}{prod.quantity}\r\n");
         sum += prod.price * prod.quantity;
       }
       message.Append(new string('-', 10));

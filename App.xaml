@@ -11,6 +11,8 @@
         <ResourceDictionary Source="Resources/Logo.xaml"/>
         <ResourceDictionary Source="Resources/Cart.xaml"/>
         <ResourceDictionary Source="Resources/Admin.xaml"/>
+        <ResourceDictionary Source="Resources/Load.xaml"/>
+        <ResourceDictionary Source="Resources/Save.xaml"/>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
 

@@ -8,26 +8,25 @@
       <DrawingGroup.Children>
         <DrawingGroup>
           <DrawingGroup.Children>
-            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
+            <GeometryDrawing Brush="#FF5B5B5B" Pen="{x:Null}">
               <GeometryDrawing.Geometry>
-                <PathGeometry FillRule="Nonzero" Figures="M4,9L6,9 6,22 4,22z M4,2L6,2 6,5 4,5z" />
+                <PathGeometry FillRule="Nonzero" Figures="M22,14L13,14C11.895,14,11,14.895,11,16L11,24 24,24 24,16C24,14.895,23.105,14,22,14z M17.414,21L14,21 14,19 16.586,19 19.586,16 21,17.414 17.414,21z M12,8C9.794,8 8,9.794 8,12 8,13.111 8.457,14.116 9.19,14.842 9.401,14.148 9.787,13.535 10.309,13.058 10.116,12.75 10,12.389 10,12 10,10.897 10.897,10 12,10 13.103,10 14,10.897 14,12L16,12C16,9.794,14.206,8,12,8z" />
               </GeometryDrawing.Geometry>
             </GeometryDrawing>
-            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
+            <GeometryDrawing Brush="#FF5B5B5B" Pen="{x:Null}">
               <GeometryDrawing.Geometry>
-                <PathGeometry FillRule="Nonzero" Figures="M7,7L3,7C2.4,7,2,6.6,2,6L2,5C2,4.4,2.4,4,3,4L7,4C7.6,4,8,4.4,8,5L8,6C8,6.6,7.6,7,7,7z M18,14L20,14 20,22 18,22z M18,2L20,2 20,10 18,10z" />
+                <PathGeometry FillRule="Nonzero" Figures="M9,19.395L9,17.192C8.716,17.03,8.448,16.847,8.2,16.643L7.336,15.931 5.414,16.593 4.729,15.407 6.265,14.071 6.087,12.972C6.028,12.606 6,12.289 6,12 6,11.711 6.028,11.394 6.088,11.027L6.266,9.928 4.729,8.593 5.414,7.407 7.336,8.069 8.199,7.359C8.692,6.954,9.259,6.629,9.883,6.393L10.926,5.998 11.315,4 12.684,4 13.074,5.999 14.117,6.394C14.741,6.629,15.307,6.955,15.8,7.358L16.664,8.07 18.586,7.408 19.271,8.594 17.735,9.93 17.913,11.029C17.972,11.394,18,11.711,18,12L20,12C20,11.604,19.963,11.181,19.887,10.709L21.827,9.021 19.492,4.98 17.07,5.813 17.07,5.812C16.407,5.269,15.652,4.834,14.824,4.522L14.333,2 9.667,2 9.176,4.522C8.348,4.835,7.593,5.27,6.93,5.813L4.508,4.979 2.173,9.021 4.113,10.709 4.113,10.71C4.037,11.181 4,11.604 4,12 4,12.396 4.037,12.819 4.113,13.291L2.173,14.979 4.508,19.02 6.93,18.186 6.93,18.187C7.544,18.69,8.243,19.089,9,19.395z" />
               </GeometryDrawing.Geometry>
             </GeometryDrawing>
-            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
-              <GeometryDrawing.Geometry>
-                <PathGeometry FillRule="Nonzero" Figures="M21,12L17,12C16.4,12,16,11.6,16,11L16,10C16,9.4,16.4,9,17,9L21,9C21.6,9,22,9.4,22,10L22,11C22,11.6,21.6,12,21,12z M11,19L13,19 13,22 11,22z M11,2L13,2 13,15 11,15z" />
-              </GeometryDrawing.Geometry>
-            </GeometryDrawing>
-            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
-              <GeometryDrawing.Geometry>
-                <PathGeometry FillRule="Nonzero" Figures="M14,17L10,17C9.4,17,9,16.6,9,16L9,15C9,14.4,9.4,14,10,14L14,14C14.6,14,15,14.4,15,15L15,16C15,16.6,14.6,17,14,17z" />
-              </GeometryDrawing.Geometry>
-            </GeometryDrawing>
+            <DrawingGroup Opacity="0.30000001192092896">
+              <DrawingGroup.Children>
+                <GeometryDrawing Brush="#FF5B5B5B" Pen="{x:Null}">
+                  <GeometryDrawing.Geometry>
+                    <PathGeometry FillRule="Nonzero" Figures="M9,16C9,15.201 9.24,14.46 9.644,13.835 9.247,13.326 9,12.694 9,12 9,10.346 10.346,9 12,9 13.654,9 15,10.346 15,12L19,12C19,11.655,18.967,11.285,18.899,10.868L18.81,10.319 20.548,8.807 19.038,6.193 16.866,6.941 16.434,6.587C15.857,6.113,15.196,5.733,14.469,5.459L13.948,5.262 13.509,3 10.491,3 10.051,5.261 9.529,5.458C8.803,5.732,8.142,6.112,7.564,6.586L7.133,6.941 4.961,6.193 3.451,8.807 5.189,10.319 5.1,10.868C5.033,11.285 5,11.655 5,12 5,12.345 5.033,12.715 5.101,13.132L5.19,13.681 3.452,15.193 4.962,17.807 7.134,17.059 7.566,17.413C7.996,17.766,8.486,18.048,9.002,18.292L9.002,16z" />
+                  </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+              </DrawingGroup.Children>
+            </DrawingGroup>
           </DrawingGroup.Children>
           <DrawingGroup.ClipGeometry>
             <RectangleGeometry Rect="0,0,24,24" />
