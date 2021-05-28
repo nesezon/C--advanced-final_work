@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+>
+
+<DrawingImage x:Key="Admin">
+  <DrawingImage.Drawing>
+    <DrawingGroup>
+      <DrawingGroup.Children>
+        <DrawingGroup>
+          <DrawingGroup.Children>
+            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M4,9L6,9 6,22 4,22z M4,2L6,2 6,5 4,5z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M7,7L3,7C2.4,7,2,6.6,2,6L2,5C2,4.4,2.4,4,3,4L7,4C7.6,4,8,4.4,8,5L8,6C8,6.6,7.6,7,7,7z M18,14L20,14 20,22 18,22z M18,2L20,2 20,10 18,10z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M21,12L17,12C16.4,12,16,11.6,16,11L16,10C16,9.4,16.4,9,17,9L21,9C21.6,9,22,9.4,22,10L22,11C22,11.6,21.6,12,21,12z M11,19L13,19 13,22 11,22z M11,2L13,2 13,15 11,15z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+            <GeometryDrawing Brush="#ff000000" Pen="{x:Null}">
+              <GeometryDrawing.Geometry>
+                <PathGeometry FillRule="Nonzero" Figures="M14,17L10,17C9.4,17,9,16.6,9,16L9,15C9,14.4,9.4,14,10,14L14,14C14.6,14,15,14.4,15,15L15,16C15,16.6,14.6,17,14,17z" />
+              </GeometryDrawing.Geometry>
+            </GeometryDrawing>
+          </DrawingGroup.Children>
+          <DrawingGroup.ClipGeometry>
+            <RectangleGeometry Rect="0,0,24,24" />
+          </DrawingGroup.ClipGeometry>
+        </DrawingGroup>
+      </DrawingGroup.Children>
+    </DrawingGroup>
+  </DrawingImage.Drawing>
+</DrawingImage>
+
+</ResourceDictionary>

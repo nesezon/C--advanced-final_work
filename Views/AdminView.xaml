@@ -7,11 +7,71 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
   <Grid>
+    <DockPanel>
+
+      <!-- Заголовок -->
+      <DockPanel DockPanel.Dock="Top">
+        <Image Source="{StaticResource Admin}" Height="16" Margin="0, 0, 0, 5" />
+        <TextBlock FontSize="16" FontWeight="Bold" Foreground="#ff4b0082"
+                   Margin="5, 0, 0, 7" VerticalAlignment="Center" Text="Админка" />
+      </DockPanel>
+
+      <!-- Пользователи -->
+      <!-- https://stackoverflow.com/questions/5409259/binding-itemssource-of-a-comboboxcolumn-in-wpf-datagrid -->
+      <DataGrid Margin="50, 5, 50, 20"
+                AutoGenerateColumns="False"
+                AlternatingRowBackground="LavenderBlush"
+                BorderThickness="0"
+                ItemsSource="{Binding Users}"
+                CommandManager.PreviewCanExecute="DataGrid_PreviewCanExecute">
+        <DataGrid.Columns>
+          <DataGridTextColumn
+            Width="100"
+            Binding="{Binding full_name}"
+            Header="Пользователь" />
+          <DataGridTextColumn
+            Width="100"
+            Binding="{Binding login}"
+            Header="Login" />
+          <DataGridTextColumn
+            Width="100"
+            Binding="{Binding password}"
+            Header="Password" />
+
+          <DataGridComboBoxColumn
+              SelectedValueBinding="{Binding role_id}" 
+              DisplayMemberPath="name" 
+              SelectedValuePath="role_id"
+              Width="100"
+              Header="Роль">
+            <DataGridComboBoxColumn.ElementStyle>
+              <Style TargetType="{x:Type ComboBox}">
+                <Setter
+                Property="ItemsSource"
+                Value="{Binding Path=Roles, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+              </Style>
+            </DataGridComboBoxColumn.ElementStyle>
+            <DataGridComboBoxColumn.EditingElementStyle>
+              <Style TargetType="{x:Type ComboBox}">
+                <Setter
+                Property="ItemsSource"
+                Value="{Binding Path=Roles, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+              </Style>
+            </DataGridComboBoxColumn.EditingElementStyle>
+          </DataGridComboBoxColumn>
+
+        </DataGrid.Columns>
+      </DataGrid>
+    </DockPanel>
+
     <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top"
                FontSize="14" Text="{Binding  LoggedUser.full_name}" Margin="0,0,5,0"/>
     <Button Content="Выход" HorizontalAlignment="Right"
             VerticalAlignment="Top" Margin="0,20,5,0"
             Style="{DynamicResource NulBtn}"
             Foreground="#FF165CDA" Click="LogOut_Click"/>
+
+    <Button Width="30" Height="30" Margin="10,51,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Load_Click">Load</Button>
+    <Button Width="30" Height="30" Margin="10,102,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Save_Click">Save</Button>
   </Grid>
 </UserControl>

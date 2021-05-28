@@ -31,8 +31,8 @@ namespace e_commerce.DBModel {
       protected override void Seed(StoreDB context) {
 
         var roles = new List<Role> {
-          new Role { name = "customer" },
-          new Role { name = "manager" }
+          new Role { name = "Покупатель" },
+          new Role { name = "Администратор" }
         };
         var users = new List<User> {
           new User { user_id = 1, role_id = 1, login = "ivan", password = "123", full_name = "Иван Иванов", deleted = false },

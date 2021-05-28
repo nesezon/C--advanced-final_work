@@ -10,11 +10,12 @@ namespace e_commerce {
     public StoreDB db;
     public ObservableCollection<CartItem> Cart { get; set; }
     public ObservableCollection<Product> Products { get; set; }
+    public ObservableCollection<RolesForCombo> Roles { get; set; }
     public User LoggedUser { get; set; }
     #region свойство зависимости "Orders" для хранения коллекции заказов
     // Регистрация
     public static readonly DependencyProperty OrdersProperty =
-          DependencyProperty.Register("Orders", typeof(ObservableCollection<OrdersFiltered>), typeof(MainWindow));
+      DependencyProperty.Register("Orders", typeof(ObservableCollection<OrdersFiltered>), typeof(MainWindow));
     // Упаковка
     public ObservableCollection<OrdersFiltered> Orders {
       get {
@@ -38,6 +39,20 @@ namespace e_commerce {
           SetValue(TotalSumProperty, value);
         }
       }
+    #endregion
+    #region свойство зависимости "Users" для таблицы пользователей
+    // Регистрация
+    public static readonly DependencyProperty UsersProperty =
+      DependencyProperty.Register("Users", typeof(ObservableCollection<UsersFiltered>), typeof(MainWindow));
+    // Упаковка
+    public ObservableCollection<UsersFiltered> Users {
+      get {
+        return (ObservableCollection<UsersFiltered>)GetValue(UsersProperty);
+      }
+      set {
+        SetValue(UsersProperty, value);
+      }
+    }
     #endregion
 
     public MainWindow() {

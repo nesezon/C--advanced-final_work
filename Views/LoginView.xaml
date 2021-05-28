@@ -9,11 +9,11 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
       <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
         <TextBlock Text="Логин" FontSize="16" Width="70" TextAlignment="Right" Margin="0,0,20,0"/>
-        <TextBox x:Name="Login" FontSize="16" Width="300" Text="ivan"/>
+        <TextBox x:Name="Login" FontSize="16" Width="300" Text="petr"/>
       </StackPanel>
       <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
         <TextBlock Text="Пароль" FontSize="16" Width="70" TextAlignment="Right" Margin="0,0,20,0"/>
-        <PasswordBox x:Name="Password" FontSize="16" Width="300" Password="123"/>
+        <PasswordBox x:Name="Password" FontSize="16" Width="300" Password="312"/>
       </StackPanel>
       <Button Content="Войти" HorizontalAlignment="Left" Margin="90,0,0,0" Padding="10,0"  FontSize="16" Click="Enter_Click"/>
     </StackPanel>
