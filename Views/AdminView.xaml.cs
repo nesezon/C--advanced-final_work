@@ -67,14 +67,16 @@ namespace e_commerce.Views {
     private void SaveUsers_Click(object sender, RoutedEventArgs e) {
       foreach (UsersForEdit u in MW.Users) {
         var user = MW.db.Users.Find(u.user_id);
+        // если из списка выбора ролей приходит 0, беру по умолчанию 1
+        short role_id_withdefval = (short) (u.role_id == 0 ? 1 : u.role_id);
         if (user == null) {
           // новая запись
-          _ = MW.db.Users.Add(
+          MW.db.Users.Add(
             new User {
               full_name = u.full_name,
               login = u.login,
               password = u.password,
-              role_id = (short)(u.role_id == 0 ? 1 : u.role_id),
+              role_id = role_id_withdefval,
               deleted = false
             }
           );
@@ -83,7 +85,7 @@ namespace e_commerce.Views {
           user.full_name = u.full_name;
           user.login = u.login;
           user.password = u.password;
-          user.role_id = u.role_id;
+          user.role_id = role_id_withdefval;
         }
       }
       // удаленные записи
