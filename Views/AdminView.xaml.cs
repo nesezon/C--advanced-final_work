@@ -10,8 +10,8 @@ using System.Data.Entity.Validation;
 namespace e_commerce.Views {
   public partial class AdminView : UserControl {
     private static MainWindow MW;
-    List<int> DelUsers = new List<int>();
-    List<int> DelProducts = new List<int>();
+    readonly List<int> DelUsers = new List<int>();
+    readonly List<int> DelProducts = new List<int>();
 
     private void PrepsUsers() {
       MW.Roles = new ObservableCollection<RolesForCombo>(
@@ -48,12 +48,42 @@ namespace e_commerce.Views {
       DelProducts.Clear();
     }
 
+    private void PrepsOrders() {
+      var treeSrc = MW.db.Users.Where(su => su.deleted == false).GroupJoin(
+        MW.db.Orders,
+        u => u.user_id,
+        o => o.user_id,
+        (u, o) => new {
+          Text = u.full_name,
+          Items = o.GroupJoin(
+              MW.db.Order_items,
+              o2 => o2.order_id,
+              oi => oi.order_id,
+              (o2, oi) => new {
+                Text = o2.order_time.Day + "." + o2.order_time.Month + "." + o2.order_time.Year + " " +
+                       o2.order_time.Hour + ":" + o2.order_time.Minute + ":" + o2.order_time.Second,
+                Items = oi.Join(MW.db.Products,
+                  oi2 => oi2.product_id,
+                  p => p.product_id,
+                  (oi2, p) => new {
+                    Text = p.name + " ( " + oi2.quantity + " x " + p.price + " )"
+                  })
+              })
+        });
+
+      Tree.Items.Clear();
+      foreach (var treeItem in treeSrc) {
+        Tree.Items.Add(treeItem);
+      }
+    }
+
     public AdminView() {
       MW = Application.Current.MainWindow as MainWindow;
       DataContext = MW;
       PrepsUsers();
       PrepsProducts();
       InitializeComponent();
+      PrepsOrders();
     }
 
     private void LogOut_Click(object sender, RoutedEventArgs e) {
@@ -68,7 +98,7 @@ namespace e_commerce.Views {
       foreach (UsersForEdit u in MW.Users) {
         var user = MW.db.Users.Find(u.user_id);
         // если из списка выбора ролей приходит 0, беру по умолчанию 1
-        short role_id_withdefval = (short) (u.role_id == 0 ? 1 : u.role_id);
+        short role_id_withdefval = (short)(u.role_id == 0 ? 1 : u.role_id);
         if (user == null) {
           // новая запись
           MW.db.Users.Add(
@@ -97,8 +127,7 @@ namespace e_commerce.Views {
       try {
         MW.db.SaveChanges();
         PrepsUsers();
-      }
-      catch (DbEntityValidationException) {
+      } catch (DbEntityValidationException) {
         MessageBox.Show("Запись не возможна. Проверьте введенные данные.");
       }
     }
@@ -114,8 +143,11 @@ namespace e_commerce.Views {
       PrepsProducts();
     }
 
+    private void LoadOrders_Click(object sender, RoutedEventArgs e) {
+      PrepsOrders();
+    }
+
     private void SaveProducts_Click(object sender, RoutedEventArgs e) {
-      // TODO: доделать
       foreach (ProductsForEdit p in MW.ProductsAdm) {
         var prod = MW.db.Products.Find(p.product_id);
         if (prod == null) {
@@ -142,13 +174,12 @@ namespace e_commerce.Views {
       try {
         MW.db.SaveChanges();
         PrepsProducts();
-      }
-      catch (DbEntityValidationException) {
+      } catch (DbEntityValidationException) {
         MessageBox.Show("Запись не возможна. Проверьте введенные данные.");
       }
     }
 
-      private void ProductsGrid_PreviewCanExecute(object sender, CanExecuteRoutedEventArgs e) {
+    private void ProductsGrid_PreviewCanExecute(object sender, CanExecuteRoutedEventArgs e) {
       DataGrid grid = (DataGrid)sender;
       if (e.Command == DataGrid.DeleteCommand) {
         DelProducts.AddRange(grid.SelectedItems.OfType<ProductsForEdit>().Select(i => i.product_id));

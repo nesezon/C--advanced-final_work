@@ -126,7 +126,33 @@
         </TabItem>
 
         <TabItem Header="Журнал заказов">
-          <Grid/>
+          <Grid Margin="-3,0,0,-3">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="1" BorderBrush="Gray" Background="White">
+              <!-- Tree -->
+              <TreeView x:Name="Tree" FontFamily="MS Sans Serif" FontSize="13" BorderThickness="0">
+                <TreeView.ItemTemplate>
+                  <HierarchicalDataTemplate ItemsSource="{Binding Items}">
+                    <TextBlock Text="{Binding Text}" />
+                  </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+                <TreeView.ItemContainerStyle>
+                  <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="True"/>
+                  </Style>
+                </TreeView.ItemContainerStyle>
+              </TreeView>
+            </Border>
+            <Grid Grid.Column="1">
+              <Button Width="33" Margin="0,10,0,0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                       Style="{DynamicResource NulBtn}" Click="LoadOrders_Click">
+                <Image Source="{StaticResource Load}" Height="26" SnapsToDevicePixels="True"/>
+              </Button>
+            </Grid>
+          </Grid>
         </TabItem>
       </TabControl>
 

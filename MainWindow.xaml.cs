@@ -121,7 +121,6 @@ namespace e_commerce {
         sum += item.quantity * item.price;
       TotalSum = sum;
     }
-
   }
 
   /// <summary>
@@ -129,7 +128,6 @@ namespace e_commerce {
   /// </summary>
   public class ListBoxRolesConverter : IValueConverter {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-      // (short)value == 0 ? 1 : value
       object result = (short)value == 0 ? 1 : value;
       return result;
     }
