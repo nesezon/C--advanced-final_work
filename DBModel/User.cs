@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace e_commerce.DBModel {
@@ -32,7 +31,7 @@ namespace e_commerce.DBModel {
     public virtual Role Roles { get; set; }
   }
 
-  public class UsersFiltered {
+  public class UsersForEdit {
     public int user_id { get; set; }
     public string full_name { get; set; }
     public string login { get; set; }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Globalization;
 using System.Windows;
+using System.Windows.Data;
 using e_commerce.DBModel;
 using e_commerce.Views;
 
@@ -27,30 +29,44 @@ namespace e_commerce {
     }
     #endregion
     #region свойство зависимости "TotalSum" для хранения общей стоимости заказа
-      // Регистрация
-      public static readonly DependencyProperty TotalSumProperty =
-          DependencyProperty.Register("TotalSum", typeof(decimal), typeof(MainWindow));
+    // Регистрация
+    public static readonly DependencyProperty TotalSumProperty =
+        DependencyProperty.Register("TotalSum", typeof(decimal), typeof(MainWindow));
     // Упаковка
     public decimal TotalSum {
-        get {
-          return (decimal)GetValue(TotalSumProperty);
-        }
-        set {
-          SetValue(TotalSumProperty, value);
-        }
+      get {
+        return (decimal)GetValue(TotalSumProperty);
       }
+      set {
+        SetValue(TotalSumProperty, value);
+      }
+    }
     #endregion
     #region свойство зависимости "Users" для таблицы пользователей
     // Регистрация
     public static readonly DependencyProperty UsersProperty =
-      DependencyProperty.Register("Users", typeof(ObservableCollection<UsersFiltered>), typeof(MainWindow));
+      DependencyProperty.Register("Users", typeof(ObservableCollection<UsersForEdit>), typeof(MainWindow));
     // Упаковка
-    public ObservableCollection<UsersFiltered> Users {
+    public ObservableCollection<UsersForEdit> Users {
       get {
-        return (ObservableCollection<UsersFiltered>)GetValue(UsersProperty);
+        return (ObservableCollection<UsersForEdit>)GetValue(UsersProperty);
       }
       set {
         SetValue(UsersProperty, value);
+      }
+    }
+    #endregion
+    #region свойство зависимости "ProductsAdm" для таблицы товаров
+    // Регистрация
+    public static readonly DependencyProperty ProductsAdmProperty =
+      DependencyProperty.Register("ProductsAdm", typeof(ObservableCollection<ProductsForEdit>), typeof(MainWindow));
+    // Упаковка
+    public ObservableCollection<ProductsForEdit> ProductsAdm {
+      get {
+        return (ObservableCollection<ProductsForEdit>)GetValue(ProductsAdmProperty);
+      }
+      set {
+        SetValue(ProductsAdmProperty, value);
       }
     }
     #endregion
@@ -104,6 +120,21 @@ namespace e_commerce {
       foreach (var item in Cart)
         sum += item.quantity * item.price;
       TotalSum = sum;
+    }
+
+  }
+
+  /// <summary>
+  /// Значение по умолчанию для ComboBox ролей в таблице пользователей в админке
+  /// </summary>
+  public class ListBoxRolesConverter : IValueConverter {
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+      // (short)value == 0 ? 1 : value
+      object result = (short)value == 0 ? 1 : value;
+      return result;
+    }
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+      return value;
     }
   }
 }

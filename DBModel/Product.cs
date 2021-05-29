@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Windows;
@@ -37,5 +36,11 @@ namespace e_commerce.DBModel {
                }));
       }
     }
+  }
+
+  public class ProductsForEdit {
+    public int product_id { get; set; }
+    public string name { get; set; }
+    public decimal price { get; set; }
   }
 }

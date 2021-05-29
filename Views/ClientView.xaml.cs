@@ -15,7 +15,7 @@ namespace e_commerce.Views {
 
     private void Preps() {
       MW = Application.Current.MainWindow as MainWindow;
-      MW.Products = new ObservableCollection<Product>(MW.db.Products);
+      MW.Products = new ObservableCollection<Product>(from p in MW.db.Products where p.deleted == false select p);
       // Подключаю order_items и products для вычисления общих стоимостей заказа
       // Оставляю только заказы текущего пользователя
       // Заказы в момент привязки сортирую по дате заказа (последние сверху)
@@ -29,10 +29,10 @@ namespace e_commerce.Views {
                      order_id = g.Key,
                      total = g.Sum(item => item.price * item.quantity)
                    };
-      var result = from or in 
-                    from o in MW.db.Orders
-                    where o.user_id == MW.LoggedUser.user_id
-                    select o
+      var result = from or in
+                     from o in MW.db.Orders
+                     where o.user_id == MW.LoggedUser.user_id
+                     select o
                    join oip in query2
                      on or.order_id equals oip.order_id
                    select new OrdersFiltered() { order_time = or.order_time, total = oip.total };

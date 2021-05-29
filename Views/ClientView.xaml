@@ -28,7 +28,7 @@
             <ItemsControl.ItemTemplate>
               <DataTemplate>
                 <Border BorderBrush="#FFB5B5B7" Background="White" Margin="2"
-                        Height="80" Width="180" BorderThickness="1" CornerRadius="8">
+                        MinHeight="80" Width="180" BorderThickness="1" CornerRadius="8">
                   <DockPanel>
                     <TextBlock DockPanel.Dock="Top" FontSize="16" TextWrapping="Wrap" Margin="5,0,0,0"
                                FontWeight="Bold" TextAlignment="Left" Text="{Binding name}" />

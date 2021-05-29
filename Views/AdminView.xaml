@@ -3,9 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:e_commerce.Views"
+             xmlns:eCommerce="clr-namespace:e_commerce"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+  <UserControl.Resources>
+    <eCommerce:ListBoxRolesConverter x:Key="ListBoxRoles" />
+  </UserControl.Resources>
   <Grid>
     <DockPanel>
 
@@ -28,10 +31,10 @@
             <Border BorderThickness="1" BorderBrush="Gray">
               <DataGrid
                 AutoGenerateColumns="False"
-                AlternatingRowBackground="LavenderBlush"
+                AlternatingRowBackground="#FFEFEFEF"
                 BorderThickness="0"
                 ItemsSource="{Binding Users}"
-                CommandManager.PreviewCanExecute="DataGrid_PreviewCanExecute">
+                CommandManager.PreviewCanExecute="UsersGrid_PreviewCanExecute">
                 <DataGrid.Columns>
                   <DataGridTextColumn
                     Width="100"
@@ -46,7 +49,7 @@
                     Binding="{Binding password}"
                     Header="Пароль" />
                   <DataGridComboBoxColumn
-                    SelectedValueBinding="{Binding role_id}" 
+                    SelectedValueBinding="{Binding role_id, Converter={StaticResource ListBoxRoles}}" 
                     DisplayMemberPath="name" 
                     SelectedValuePath="role_id"
                     Width="100"
@@ -72,11 +75,11 @@
             </Border>
             <Grid Grid.Column="1">
               <Button Width="33" Margin="0,10,0,0" HorizontalAlignment="Right" VerticalAlignment="Top"
-                       Style="{DynamicResource NulBtn}" Click="Load_Click">
+                       Style="{DynamicResource NulBtn}" Click="LoadUsers_Click">
                 <Image Source="{StaticResource Load}" Height="26" SnapsToDevicePixels="True"/>
               </Button>
               <Button Width="33" Margin="0,45,0,0" HorizontalAlignment="Right" VerticalAlignment="Top"
-                      Style="{DynamicResource NulBtn}" Click="Save_Click">
+                      Style="{DynamicResource NulBtn}" Click="SaveUsers_Click">
                 <Image Source="{StaticResource Save}" Height="26" SnapsToDevicePixels="True"/>
               </Button>
             </Grid>
@@ -84,7 +87,42 @@
         </TabItem>
 
         <TabItem Header="Товары">
-          <Grid/>
+          <Grid Margin="-3,0,0,-3">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition/>
+              <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderThickness="1" BorderBrush="Gray">
+              <DataGrid
+                AutoGenerateColumns="False"
+                AlternatingRowBackground="#FFEFEFEF"
+                BorderThickness="0"
+                ItemsSource="{Binding ProductsAdm}"
+                CommandManager.PreviewCanExecute="ProductsGrid_PreviewCanExecute">
+                <DataGrid.Columns>
+                  <DataGridTextColumn
+                    Width="200"
+                    Binding="{Binding name}"
+                    Header="Название" />
+                  <DataGridTextColumn
+                    Width="100"
+                    Binding="{Binding price, StringFormat=\{0:N\}}"
+                    Header="Цена" />
+
+                </DataGrid.Columns>
+              </DataGrid>
+            </Border>
+            <Grid Grid.Column="1">
+              <Button Width="33" Margin="0,10,0,0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                       Style="{DynamicResource NulBtn}" Click="LoadProducts_Click">
+                <Image Source="{StaticResource Load}" Height="26" SnapsToDevicePixels="True"/>
+              </Button>
+              <Button Width="33" Margin="0,45,0,0" HorizontalAlignment="Right" VerticalAlignment="Top"
+                      Style="{DynamicResource NulBtn}" Click="SaveProducts_Click">
+                <Image Source="{StaticResource Save}" Height="26" SnapsToDevicePixels="True"/>
+              </Button>
+            </Grid>
+          </Grid>
         </TabItem>
 
         <TabItem Header="Журнал заказов">
