@@ -10,6 +10,7 @@ using e_commerce.Views;
 namespace e_commerce {
   public partial class MainWindow : Window {
     public StoreDB db;
+    readonly Settings settings = new Settings();
     public ObservableCollection<CartItem> Cart { get; set; }
     public ObservableCollection<Product> Products { get; set; }
     public ObservableCollection<RolesForCombo> Roles { get; set; }
@@ -87,6 +88,8 @@ namespace e_commerce {
       }
 
       InitializeComponent();
+      
+      settings.LoadFromRegistry(this);
 
       // Сразу открываю окно авторизации
       ActiveItem.Content = new LoginView();
@@ -120,6 +123,11 @@ namespace e_commerce {
       foreach (var item in Cart)
         sum += item.quantity * item.price;
       TotalSum = sum;
+    }
+
+    private void Window_Deactivated(object sender, EventArgs e) {
+      // сбрасываем настройки в реестр
+      settings.Save2Registry(this);
     }
   }
 
