@@ -2,8 +2,8 @@ C# Advanced. Final project
 ## E-Commerce
 
 <p align="center">
-  <img width="788" height="444" src="https://github.com/nesezon/C--advanced-final_work/raw/main/screen_1.png">
-  <img width="788" height="444" src="https://github.com/nesezon/C--advanced-final_work/raw/main/screen_2.png">
+  <img width="788" src="https://github.com/nesezon/C--advanced-final_work/raw/main/screen_1.png">
+  <img width="788" src="https://github.com/nesezon/C--advanced-final_work/raw/main/screen_2.png">
 </p>
 
 TODO:  
