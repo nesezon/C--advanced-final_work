@@ -1,6 +1,11 @@
 C# Advanced. Final project
 ## E-Commerce
 
+<p align="center">
+  <img width="788" height="444" src="https://github.com/nesezon/C--advanced-final_work/raw/main/image/screen_1.png">
+  <img width="788" height="444" src="https://github.com/nesezon/C--advanced-final_work/raw/main/image/screen_2.png">
+</p>
+
 TODO:  
 - [x] При каждом запуске пересоздавать БД (Code First).
 - [x] Вход по паролю.
