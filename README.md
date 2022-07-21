@@ -4,6 +4,7 @@ C# Advanced. Final project
 <p align="center">
   <img width="788" src="https://github.com/nesezon/C--advanced-final_work/raw/main/screen_1.png">
   <img width="788" src="https://github.com/nesezon/C--advanced-final_work/raw/main/screen_2.png">
+  <img width="684" src="https://github.com/nesezon/C--advanced-final_work/raw/main/screen_db.png">
 </p>
 
 TODO:  
